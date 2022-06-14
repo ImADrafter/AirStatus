@@ -126,21 +126,11 @@ def is_flipped(raw):
 
 
 def run():
-    output_file = argv[-1]
-
-    while True:
-        data = get_data()
-
-        if data["status"] == 1:
-            json_data = dumps(data)
-            if len(argv) > 1:
-                f = open(output_file, "a")
-                f.write(json_data+"\n")
-                f.close()
-            else:
-                print(json_data)
-
-        sleep(UPDATE_DURATION)
+    print('    Loading airpods battery...')
+    data = get_data()
+    left = data['charge']['left']
+    right = data['charge']['right']
+    print(f"{left}%    {right}%")
 
 
 if __name__ == '__main__':
